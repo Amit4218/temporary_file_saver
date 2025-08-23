@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    {% if file_url %}
+    <div>
+      <a href="{{file_url}}" target="_blank">{{file_url}}</a>
+    </div>
+    {% else %}
+    <h1>oops</h1>
+    {% endif %}
+  </body>
+</html>
