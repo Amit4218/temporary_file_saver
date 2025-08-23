@@ -3,17 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>File Upload</title>
+    <title>File Host</title>
+    <link rel="stylesheet" href="./static/style.css" />
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='style.css') }}"
     />
   </head>
   <body>
-    <h3>Hi</h3>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-      <input type="file" name="file" />
-      <button type="submit" value="submit">Submit</button>
-    </form>
+    <main class="container">
+      <section class="card">
+        <div class="header">
+          <h2>File Host</h2>
+          <nav>
+            <a href="/">Upload</a>
+            <a href="/api">API</a>
+            <a href="#" target="_blank">About</a>
+          </nav>
+        </div>
+      </section>
+
+      {% block content %}
+      <p class="note">All files are deleted automatically after a day.</p>
+
+      <section class="upload-box">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+          <input type="file" name="file" />
+          <button type="submit">Submit</button>
+        </form>
+      </section>
+      {% endblock content %}
+    </main>
   </body>
 </html>
