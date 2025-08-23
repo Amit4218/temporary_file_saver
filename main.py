@@ -1,16 +1,20 @@
 from flask import Flask, render_template, request, send_from_directory, abort
 from werkzeug.utils import secure_filename
+from db.db import create_table, save_file_path
 from dotenv import load_dotenv
+import subprocess
 import uuid
 import os
 
 app = Flask(__name__)
-ROOT_FOLDER = "temp"
+ROOT_FOLDER = "temp"  # root directory for the folders and files
 load_dotenv()
 
 
 def func():
     try:
+        if not os.path.exists(ROOT_FOLDER):
+            os.mkdir(ROOT_FOLDER)
         unique_folder_name = str(uuid.uuid4())
         folder_path = os.path.join(ROOT_FOLDER, unique_folder_name)
         os.makedirs(folder_path, exist_ok=True)
@@ -47,9 +51,11 @@ def upload():
 
                 file_url = f"{os.getenv('HOST_BASE_URL')}/file/{folder_id}/{file_name}"
 
+                save_path_to_db = save_file_path(filename=file_name, path=folder_path)
+
                 html = f"<h3><a href={file_url} target='_blank'>{file_url}</a></h3>"
 
-                return render_template("preview.html")
+                return render_template("preview.html", file_url=file_url)
 
     except Exception as err:
         return render_template("error.html", error=err)
@@ -59,17 +65,23 @@ def upload():
 def get_file(folder, filename):
     try:
 
-        if request.method == ["GET"]:
+        if request.method == "GET":
 
             folder_path = os.path.join(ROOT_FOLDER, folder)
 
             if not os.path.exists(os.path.join(folder_path, filename)):
-                abort(400)
+                abort(404)
 
             return send_from_directory(folder_path, filename)
     except Exception as err:
         return render_template("error.html", error=err)
 
 
+def main():
+
+    create_table()
+    subprocess.run(f"clean_up_files.py && {app.run(port=3000)}", check=True)
+
+
 if __name__ == "__main__":
-    app.run(port=3000, debug=True)
+    main()
