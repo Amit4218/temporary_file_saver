@@ -58,6 +58,7 @@ body {
 }
 
 .upload-box {
+  margin-top: 10px;
   background: #ffffff;
   padding: 20px;
   border: 1px solid #dee2e6;
@@ -92,7 +93,7 @@ form button:hover {
   font-weight: 700;
 }
 
-#home-btn{
+#home-btn {
   background-color: #4986a0;
   color: rgb(188, 188, 233);
   border: none;
@@ -100,5 +101,22 @@ form button:hover {
   margin-top: 30px;
   border-radius: 4px;
   font-weight: bold;
+}
 
+/* Api.html */
+
+pre {
+  background: #e2e2e2;
+  padding: 12px;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+code {
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
 }
