@@ -2,10 +2,6 @@ from datetime import datetime, timedelta
 import sqlite3
 
 
-
-SLEEP_TIME = 86400  # 24 hours in seconds
-
-
 def connect_to_database():
     try:
 
@@ -64,33 +60,46 @@ def search_expired_files():
 
     try:
 
-        old_files = []
+        old_files_paths = []
 
         cursor, connection = connect_to_database()
 
-        # searching the db for file paths where the creation has exceeded 1 day (<=) -1 day
+        # searching the db for file paths where the creation has exceeded 60 minutes
 
         cursor.execute(
             """
             SELECT * 
             FROM file_paths
-            WHERE created_at <= datetime('now', '-1 day') 
+            WHERE created_at <= datetime('now', '-60 minutes') 
             """
         )
 
         rows = cursor.fetchall()
         for row in rows:
-            created_at = datetime.strptime(row[3], "%Y-%m-%d %H:%M:%S")
-
-            # Check if the file is 1 day old or more
-            if created_at <= datetime.now() - timedelta(days=1):
-                old_files.append(row[2])
+            old_files_paths.append(row[2])
 
         connection.close()
 
-        return old_files
+        return old_files_paths
 
     except Exception as e:
         print(e)
 
 
+def clean_db_records():
+
+    try:
+
+        cursor, connection = connect_to_database()
+
+        cursor.execute(
+            """
+        DELETE FROM file_paths WHERE created_at <= datetime('now', '-60 minutes')
+        """
+        )
+
+        connection.commit()
+        connection.close()
+
+    except Exception as e:
+        print(e)
