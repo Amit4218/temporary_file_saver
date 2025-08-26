@@ -143,7 +143,7 @@ def api_upload():
                 return res_structure, 200
 
     except Exception as e:
-        return abort(500, e)
+        abort(500, description=str(e))
 
 
 def main():
