@@ -13,6 +13,8 @@ ROOT_FOLDER = "temp"  # root directory for the folders and files
 HOST_URL = os.getenv("HOST_BASE_URL")
 MAX_FILE_SIZE = 30 * 1024 * 1024
 
+app.config["MAX_CONTENT_LENGTH"] = MAX_FILE_SIZE
+
 
 def func():
     try:
@@ -141,7 +143,7 @@ def api_upload():
                 return res_structure, 200
 
     except Exception as e:
-        print(e)
+        return abort(500, e)
 
 
 def main():
@@ -151,7 +153,7 @@ def main():
     clean_up = threading.Thread(target=delete_files, daemon=True)
     clean_up.start()
 
-    app.run(port=3000)
+    # app.run(port=3000)
 
 
 if __name__ == "__main__":
