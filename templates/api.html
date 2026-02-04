@@ -1,0 +1,26 @@
+{% extends "index.html" %} {% block content %} {% if domain_name %}
+
+
+<section class="note" width="60%">
+  <h3>Upload via cURL</h3>
+  <p>
+    You can upload a file directly with the API endpoint:
+    <strong>{{domain_name}}/api/v1/upload</strong>
+  </p>
+</section>
+
+<section >
+  <p style="margin: 10px 0">
+    Make sure you have <strong>curl</strong> installed.
+  </p>
+  <pre><code>curl -X POST -F "file=@./your-file.png" {{domain_name}}/api/v1/upload</code></pre>
+</section>
+
+{% else %}
+
+<section>
+  <h3>Error: Something went wrong !</h3>
+  <p>Try refreshing the page</p>
+</section>
+
+{% endif %} {% endblock content %}

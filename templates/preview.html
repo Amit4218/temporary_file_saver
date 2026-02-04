@@ -1,0 +1,24 @@
+{% extends "index.html" %} {% block content %} {% if file_url and file_name %}
+
+<section>
+  <div class="preview-image">
+    <img src="{{file_url}}" alt="uploaded file" width="580px" height="400px" />
+  </div>
+  <div class="file-details">
+    <h4>File Name: {{file_name}}</h4>
+    <span id="meta-data"
+      >File Link: <a href="{{file_url}}" target="_blank">{{file_url}}</a></span
+    >
+  </div>
+</section>
+{% else %}
+
+<section>
+  <div class="error">
+    <h3>Opps ! Something went wrong</h3>
+    <span>Please try again</span>
+  </div>
+  <button id="home-btn"><a href="/">Home</a></button>
+</section>
+
+{% endif %} {% endblock content %}

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Host</title>
+    <link rel="stylesheet" href="./static/style.css" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <main class="container">
+      <section class="card">
+        <div class="header">
+          <h2>File Host</h2>
+          <nav>
+            <a href="/">Upload</a>
+            <a href="/api">API</a>
+            <a href="/about">About</a>
+          </nav>
+        </div>
+      </section>
+
+      {% block content %}
+      <p class="note">
+        All files are deleted automatically after 60 min. <br />
+        <strong><span>Max file size is 30 mb</span></strong>
+      </p>
+
+      <span id="error" class="error"></span>
+
+      <section class="upload-box">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+          <input type="file" name="file" id="file" />
+          <button type="submit" id="submit-btn">Submit</button>
+        </form>
+      </section>
+      {% endblock content %}
+    </main>
+    <script src="./static/index.js"></script>
+  </body>
+</html>
