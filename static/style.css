@@ -1,0 +1,192 @@
+body,
+h2,
+p,
+a,
+form {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f1f3f5;
+  color: #212529;
+  margin: 20px;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+.card {
+  background: #ffffff;
+  padding: 15px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.header nav a {
+  margin-left: 15px;
+  text-decoration: none;
+  color: #0077b6;
+  font-weight: 500;
+}
+
+.header nav a:hover {
+  text-decoration: underline;
+}
+
+.note {
+  margin: 15px 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.upload-box {
+  margin-top: 10px;
+  background: #ffffff;
+  padding: 20px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+}
+
+form input[type="file"] {
+  margin-right: 10px;
+}
+
+form button {
+  padding: 5px 12px;
+  background: #0077b6;
+  border: none;
+  border-radius: 4px;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+form button:hover {
+  background: #005f87;
+}
+
+/* Styles for preview */
+
+.preview-image {
+  margin: 10px;
+}
+
+#meta-data {
+  font-weight: 700;
+}
+
+#home-btn {
+  background-color: #4986a0;
+  color: rgb(188, 188, 233);
+  border: none;
+  padding: 8px 20px;
+  margin-top: 30px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* Api.html */
+
+pre {
+  background: #e2e2e2;
+  padding: 12px;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+code {
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+/* About Page Styles */
+
+.about-page {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+
+.about-card {
+  background: #ffffff;
+  width: 100%;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.about-card h1 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #212529;
+}
+
+.about-card h2 {
+  font-size: 1.4rem;
+  margin-top: 30px;
+  margin-bottom: 12px;
+  color: #343a40;
+}
+
+.about-card p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #495057;
+  margin-bottom: 12px;
+}
+
+.about-card ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+}
+
+.about-card li {
+  margin-bottom: 10px;
+}
+
+.about-card a {
+  color: #0077b6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.about-card a:hover {
+  text-decoration: underline;
+}
+
+.contact-list li {
+  margin-bottom: 8px;
+}
+
+.projects-list li {
+  margin-bottom: 15px;
+}
+
+.projects-list p {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: #6c757d;
+}
