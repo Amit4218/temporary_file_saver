@@ -8,6 +8,7 @@ from src.db.db import Base, Session, engine, get_db
 from src.models.file_path_table import FilePaths
 from src.services.cloudinary_service import cloudinary_service
 from src.utils.background_job import search_expired_files_and_delete
+from src.utils.settings import settings
 from src.utils.validations import generate_short_id, validate_file
 
 
@@ -34,7 +35,7 @@ async def lifespan(app: FastAPI):
         app_logger.info("[CRON] scheduler shutting down")
         
         
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(lifespan=lifespan, docs_url=None, openapi_url=None, redoc_url=None)
 Base.metadata.create_all(bind=engine)
 
 
@@ -63,4 +64,15 @@ async def upload(file: UploadFile, db: Session = Depends(get_db)): # noqa: B008
     db.add(file_details)
     db.commit()
     
-    return {"short_id":short_id}
+    final_url = f'{settings.HOST_URL}/{short_id}'
+    
+    return {"status":"success", "url":final_url}
+
+
+@app.get("/{id}")
+async def get_file(id:str, db: Session = Depends(get_db)): # noqa: B008
+    file_url = db.execute(db.query(FilePaths.secure_url).where(FilePaths.short_id == id)).scalar()
+    if file_url:
+        return {"status":"success","url":file_url}
+    
+    return {"status":"fail", "url":None}
