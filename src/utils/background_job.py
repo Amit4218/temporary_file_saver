@@ -19,6 +19,8 @@ def delete_expired_files(expired_files: Sequence[FilePaths] ,db: Session,) -> No
             id=str(file.public_id),
             type=str(file.resource_type),
         )
+        
+        app_logger.info(f"[CRON] attempted to delete file: {deleted}")
 
         if deleted:
             deleted_count += 1

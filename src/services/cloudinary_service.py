@@ -12,6 +12,9 @@ class UpladFileResponse(BaseModel):
     public_id: str
     resource_type: str
     secure_url: str
+    width: int
+    height: int
+    format:str
 
 
 class CloudinaryService:
