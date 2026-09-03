@@ -1,0 +1,10 @@
+@import "../styles/globals.css";
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
